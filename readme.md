@@ -1,114 +1,73 @@
-# 🧾 Sistema de Facturación en Python (PyQt6 + ReportLab)
+# Sistema de Generación de Facturas en PDF
 
-Este proyecto es una aplicación de escritorio en **Python** para gestionar facturas.
-Incluye interfaz gráfica con **PyQt6**, exportación a **PDF** con ReportLab y almacenamiento en **CSV**.
+Este es un sistema de escritorio simple, desarrollado en Python, para crear y gestionar facturas, guardarlas en un archivo CSV y exportarlas a formato PDF.
 
----
+## Características
 
-## ✨ Características
+- **Interfaz Gráfica de Usuario (GUI)**: Interfaz de usuario intuitiva construida con PyQt6 para una fácil entrada de datos.
+- **Gestión de Clientes y Productos**: Permite ingresar datos del cliente y añadir múltiples productos o servicios a cada factura.
+- **Numeración Automática**: Asigna automáticamente un número de factura secuencial.
+- **Cálculo de Totales**: Calcula automáticamente los subtotales por producto y el total de la factura.
+- **Persistencia de Datos**: Guarda un registro de todas las facturas emitidas en un archivo `facturas.csv`.
+- **Exportación a PDF**: Genera un archivo PDF con un formato profesional para cada factura, incluyendo un logo de la empresa.
 
-- Interfaz gráfica moderna con **PyQt6**.
-- Formulario de cliente con validaciones:
-  - Nombre
-  - Identificación (NIT o cédula)
-  - Dirección
-  - Teléfono
-- Gestión de productos/servicios:
-  - Descripción
-  - Cantidad
-  - Precio unitario
-  - Subtotal calculado automáticamente
-- Exportación de facturas a **PDF profesional** con logo y formato tabular.
-- Almacenamiento de facturas en un archivo **CSV**.
-- Numeración automática de facturas.
-- Validaciones de datos en cliente y productos.
+## Requisitos
 
----
+Para ejecutar este proyecto, necesitarás tener Python 3 instalado. Las dependencias de Python se listan en el archivo `requirements.txt`.
 
-## 🗂️ Estructura del proyecto
+- Python 3.x
+- PyQt6
+- ReportLab
+- Pandas
+- Numpy
 
-mi_proyecto_facturas/
-├── main.pyw # Punto de entrada de la aplicación
-├── output/ # Facturas generadas en PDF
-├── src/
-│ ├── assets/ # Recursos (logo de la empresa, etc.)
-│ │ └── logo.jpg
-│ ├── db/
-│ │ └── database.py # Manejo de CSV (facturas)
-│ ├── logic/
-│ │ └── invoice_manager.py # Lógica de negocio (validaciones, numeración)
-│ ├── models.py # Definición de clases: Cliente, Producto, Factura
-│ ├── pdf/
-│ │ └── pdf_generator.py # Generación de facturas en PDF
-│ └── ui/
-│ └── main_window.py # Interfaz gráfica (PyQt6)
+## Instalación y Ejecución
 
----
+1. **Clona el repositorio:**
 
-## 🛠️ Requisitos
-
-- Python 3.10 o superior
-- Entorno virtual recomendado (`venv`)
-
-Librerías necesarias:
-
-- **PyQt6**
-- **reportlab**
-
----
-
-## ⚙️ Instalación
-
-1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tuusuario/mi_proyecto_facturas.git
-   cd mi_proyecto_facturas
+   git clone https://github.com/MiguelEstradaLopez/CFPythonPdf.git
+   cd CFPythonPdf
+   ```
+2. **Crea un entorno virtual (recomendado):**
 
-    Crea un entorno virtual:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # En Windows: venv\Scripts\activate
+   ```
+3. **Instala las dependencias:**
 
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Ejecuta la aplicación:**
+
+   ```bash
+   python main.pyw
    ```
 
-python3 -m venv venv
-source venv/bin/activate   # Linux / MacOS
-venv\Scripts\activate      # Windows
+   Las facturas en PDF se guardarán en el directorio `output/`.
 
-Instala dependencias:
+## Estructura del Proyecto
 
-pip install pyqt6 reportlab
-
-Ejecuta la aplicación:
-
-    python main.pyw
-
-📤 Exportación a PDF
-
-    Los PDFs se guardan en la carpeta output/.
-
-    El logo se carga desde src/assets/logo.jpg (puedes reemplazarlo por el de tu empresa).
-
-    Ejemplo de nombre de archivo:
-
-    factura_1.pdf
-
-🗃️ Base de datos (CSV)
-
-    Las facturas quedan registradas en facturas.csv en la raíz del proyecto.
-
-    Ejemplo de registro:
-
-numero,fecha_emision,cliente_nombre,cliente_identificacion,cliente_direccion,cliente_telefono,productos,total
-1,2025-09-19 15:30:12,Juan Pérez,12345678,Calle 10 #5-20,3001234567,"Laptop x1 @ 2500.0; Mouse x2 @ 50.0",2600.00
-
-🚀 Mejoras futuras
-
-    Integrar una base de datos real (SQLite o PostgreSQL).
-
-    Añadir reportes de ventas.
-
-    Implementar búsqueda y consulta de facturas anteriores desde la interfaz.
-
-    Generar gráficos estadísticos de facturación.
-
-👨‍💻 Autor: Miguel Angel Estrada Lopez (Miki)
-
-Proyecto desarrollado en Python con ❤️ para prácticas de facturación y generación de PDFs.
+```
+.
+├── main.pyw                # Punto de entrada de la aplicación
+├── requirements.txt        # Dependencias de Python
+├── facturas.csv            # Base de datos de facturas
+├── output/                 # Directorio para los PDFs generados
+│   └── ...
+└── src/
+    ├── assets/             # Recursos como el logo
+    │   └── logo.jpg
+    ├── db/
+    │   ├── database.py     # Lógica para interactuar con el CSV
+    │   └── models.py       # Clases de datos (Factura, Cliente, Producto)
+    ├── logic/
+    │   └── invoice_manager.py # Lógica de negocio (validación, etc.)
+    ├── pdf/
+    │   └── pdf_generator.py # Lógica para crear los PDFs
+    └── ui/
+        ├── main_window.py  # Ventana principal de la GUI
+        └── product_dialog.py # Diálogo para añadir productos
+```
